@@ -35,7 +35,7 @@ mt76x2_mac_process_rate(struct ieee80211_rx_status *status, u16 rate)
 		if (idx >= 8)
 			idx = 0;
 
-		if (status->band == NL80211_BAND_2GHZ)
+		if (status->band == IEEE80211_BAND_2GHZ)
 			idx += 4;
 
 		status->rate_idx = idx;
@@ -214,7 +214,6 @@ void mt76x2_mac_write_txwi(struct mt76x2_dev *dev, struct mt76x2_txwi *txwi,
 
 int mt76x2_mac_process_rx(struct mt76x2_dev *dev, struct sk_buff *skb, void *rxi)
 {
-	printk("[chpei] check the compile path!\n");
 	struct ieee80211_rx_status *status = IEEE80211_SKB_RXCB(skb);
 	struct mt76x2_rxwi *rxwi = rxi;
 	u32 ctl = le32_to_cpu(rxwi->ctl);
@@ -248,7 +247,7 @@ int mt76x2_mac_process_rx(struct mt76x2_dev *dev, struct sk_buff *skb, void *rxi
 
 static void
 mt76x2_mac_process_tx_rate(struct ieee80211_tx_rate *txrate, u16 rate,
-			 enum nl80211_band band)
+			 enum ieee80211_band band)
 {
 	u8 idx = MT76_GET(MT_RXWI_RATE_INDEX, rate);
 
@@ -258,7 +257,7 @@ mt76x2_mac_process_tx_rate(struct ieee80211_tx_rate *txrate, u16 rate,
 
 	switch (MT76_GET(MT_RXWI_RATE_PHY, rate)) {
 	case MT_PHY_TYPE_OFDM:
-		if (band == NL80211_BAND_2GHZ)
+		if (band == IEEE80211_BAND_2GHZ)
 			idx += 4;
 
 		txrate->idx = idx;
