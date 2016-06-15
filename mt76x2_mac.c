@@ -214,6 +214,7 @@ void mt76x2_mac_write_txwi(struct mt76x2_dev *dev, struct mt76x2_txwi *txwi,
 
 int mt76x2_mac_process_rx(struct mt76x2_dev *dev, struct sk_buff *skb, void *rxi)
 {
+	printk("[chpei]To check whether my code is hacked into it.\n");
 	struct ieee80211_rx_status *status = IEEE80211_SKB_RXCB(skb);
 	struct mt76x2_rxwi *rxwi = rxi;
 	u32 ctl = le32_to_cpu(rxwi->ctl);
