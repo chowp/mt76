@@ -221,10 +221,10 @@ int mt76x2_mac_process_rx(struct mt76x2_dev *dev, struct sk_buff *skb, void *rxi
 	u16 rate = le16_to_cpu(rxwi->rate);
 	int len;
 	printk("[chpei]To check whether my code is hacked into it.\n");
-	printk("[chpei]The value of the [%p]\n",bbp_rxinfo[0]);
-	printk("[chpei]The value of the [%p]\n",bbp_rxinfo[1]);
-	printk("[chpei]The value of the [%p]\n",bbp_rxinfo[2]);
-	printk("[chpei]The value of the [%p]\n",bbp_rxinfo[3]);
+	printk("[chpei]The value of the [%p]\n",rxwi->bbp_rxinfo[0]);
+	printk("[chpei]The value of the [%p]\n",rxwi->bbp_rxinfo[1]);
+	printk("[chpei]The value of the [%p]\n",rxwi->bbp_rxinfo[2]);
+	printk("[chpei]The value of the [%p]\n",rxwi->bbp_rxinfo[3]);
 	if (rxwi->rxinfo & cpu_to_le32(MT_RXINFO_L2PAD))
 		mt76_remove_hdr_pad(skb);
 
