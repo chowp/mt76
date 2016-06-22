@@ -225,8 +225,12 @@ int mt76x2_mac_process_rx(struct mt76x2_dev *dev, struct sk_buff *skb, void *rxi
 	printk("[chpei]The value of the [%08x]\n",rxwi->bbp_rxinfo[1]);
 	printk("[chpei]The value of the [%08x]\n",rxwi->bbp_rxinfo[2]);
 	printk("[chpei]The value of the [%08x]\n",rxwi->bbp_rxinfo[3]);
-	printk("[chpei]The content of bbp_rxinfo[0] is [%d]\n",*((int *)(rxwi->bbp_rxinfo[0])));
-	printk("[chpei]The content of bbp_rxinfo[1] is [%d]\n",*((int *)(rxwi->bbp_rxinfo[1])));
+	printk("[chpei]The le32_to_cpu of the [%08x]\n",le32_to_cpu(rxwi->bbp_rxinfo[0]));
+	printk("[chpei]The le32_to_cpu of the [%08x]\n",le32_to_cpu(rxwi->bbp_rxinfo[1]));
+	printk("[chpei]The le32_to_cpu of the [%08x]\n",le32_to_cpu(rxwi->bbp_rxinfo[2]));
+	printk("[chpei]The le32_to_cpu of the [%08x]\n",le32_to_cpu(rxwi->bbp_rxinfo[3]));
+	//printk("[chpei]The content of bbp_rxinfo[0] is [%d]\n",*((int *)(rxwi->bbp_rxinfo[0])));
+	//printk("[chpei]The content of bbp_rxinfo[1] is [%d]\n",*((int *)(rxwi->bbp_rxinfo[1])));
 	
 	if (rxwi->rxinfo & cpu_to_le32(MT_RXINFO_L2PAD))
 		mt76_remove_hdr_pad(skb);
